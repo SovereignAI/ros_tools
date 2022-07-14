@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # Provides a helper node for converting speed and curvature values to twist messages
 # Author: Gowtham Ram Pagadala
 
