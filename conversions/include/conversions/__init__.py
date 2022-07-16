@@ -1,1 +1,1 @@
-from py_occupancy_grid import PyOccupancyGrid
+from . py_occupancy_grid import PyOccupancyGrid

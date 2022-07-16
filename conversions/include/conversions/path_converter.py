@@ -7,7 +7,7 @@ representations in 2D and 3D
 import numpy as np
 from nav_msgs.msg import Path
 
-import pose_converter as pc
+import conversions.pose_converter as pc
 
 class PathConverter(object):
     def __init__(self, obj=None):
