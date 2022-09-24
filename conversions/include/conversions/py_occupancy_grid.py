@@ -24,14 +24,17 @@ class PyOccupancyGrid(object):
             resolution = data.info.resolution
             origin = data.info.origin
             data = data.data
+            frame_id = data.header.frame_id
 
         if isinstance(origin, Pose):
             origin = [origin.position.x, origin.position.y]
+            frame_id = ""
 
         self.origin = np.array(origin) #TODO add support for rotated grids origin=[x,y,theta]
         self.shape = np.array([height, width])
         self.resolution = resolution
         self.grid = np.array(data, dtype=int).reshape(self.shape)
+        self.frame_id = frame_id
 
     def index_to_coord(self, rc):
         """ Convert row column [r, c] to xy coordinates[x, y]
@@ -63,6 +66,7 @@ class PyOccupancyGrid(object):
     def to_msg(self):
         """ Returns the grid as a ros nav_msgs.msg.OccupancyGrid. """
         msg = OccupancyGrid()
+        msg.header.frame_id = self.frame_id
         msg.data = self.grid.flatten().tolist()
         msg.info.height, msg.info.width = self.shape
         msg.info.resolution = self.resolution
