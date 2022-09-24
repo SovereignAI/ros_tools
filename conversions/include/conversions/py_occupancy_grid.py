@@ -18,6 +18,7 @@ class PyOccupancyGrid(object):
             origin (list) or (geometry_msgs.msg.Pose): The pose of the origin cell [m, m]
         """
 
+        frame_id = ""
         if isinstance(data, OccupancyGrid):
             width = data.info.width
             height = data.info.height
@@ -28,7 +29,6 @@ class PyOccupancyGrid(object):
 
         if isinstance(origin, Pose):
             origin = [origin.position.x, origin.position.y]
-            frame_id = ""
 
         self.origin = np.array(origin) #TODO add support for rotated grids origin=[x,y,theta]
         self.shape = np.array([height, width])
