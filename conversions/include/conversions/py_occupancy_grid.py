@@ -20,12 +20,12 @@ class PyOccupancyGrid(object):
 
         frame_id = ""
         if isinstance(data, OccupancyGrid):
+            frame_id = data.header.frame_id
             width = data.info.width
             height = data.info.height
             resolution = data.info.resolution
             origin = data.info.origin
             data = data.data
-            frame_id = data.header.frame_id
 
         if isinstance(origin, Pose):
             origin = [origin.position.x, origin.position.y]
