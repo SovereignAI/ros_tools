@@ -7,7 +7,7 @@ representations in 2D and 3D
 import numpy as np
 from nav_msgs.msg import Path
 
-import pose_converter as pc
+import conversions.pose_converter as pc
 
 class PathConverter(object):
     def __init__(self, obj=None):
@@ -30,13 +30,13 @@ class PathConverter(object):
         raise TypeError('Unrecognized object type passed to constructor')
 
     def _from_path(self, path):
-        self.poses = np.array(map(pc.to_array, path.poses))
+        self.poses = np.array(list(map(pc.to_array, path.poses)))
 
     def _from_array(self, arr):
         self.poses = arr
 
     def _from_array2d(self, arr):
-        self.poses = np.array(map(pc.to_array, arr))
+        self.poses = np.array(list(map(pc.to_array, arr)))
 
     def to_path(self):
         path = Path()
@@ -47,7 +47,7 @@ class PathConverter(object):
         return self.poses
 
     def to_array2d(self):
-        return np.array(map(pc.to_array2d, self.poses))
+        return np.array(list(map(pc.to_array2d, self.poses)))
 
     def __repr__(self):
         return "PathConverter\nposes " + str(self.poses)

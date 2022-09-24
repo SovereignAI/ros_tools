@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import unittest, rosunit
 import numpy as np
 from nav_msgs.msg import OccupancyGrid
