@@ -1,7 +1,6 @@
 from nav_msgs.msg import OccupancyGrid
 from geometry_msgs.msg import Pose
 import numpy as np
-import matplotlib.pyplot as plt
 
 class PyOccupancyGrid(object):
     """ A python representation of an occupancy grid stored as a numpy array """
@@ -87,4 +86,5 @@ class PyOccupancyGrid(object):
 
     def plot(self):
         """ Plots the grid as an image and returns a handle to the image axes """
+        import matplotlib.pyplot as plt
         return plt.imshow(self.grid, extent=self.get_extent(), origin='lower')
