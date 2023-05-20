@@ -24,11 +24,12 @@ class SpeedCurvatureToTwistNode(object):
     def process_curvature(self, msg):
         """ Handle receiving a curvature command """
         self.curvature = msg.data
+        self.last_curvature_received = rospy.Time.now()
 
     def process_speed(self, msg):
         """ Handle receiving a speed command """
         speed = msg.data
-        if not self.curvature is None:
+        if not self.curvature is None and rospy.Time.now() - self.last_curvature_received < rospy.Duration(0.5):
             twist = Twist()
             twist.linear.x = speed
             twist.angular.z = speed * self.curvature
